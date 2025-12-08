@@ -114,10 +114,49 @@
 
 .id-tag { margin-top: 20px; font-size: 0.75rem; opacity: 0.4; text-align: center; }
 
+/* src/TemperatureConverter.css - Mobile Fix */
+
+/* ... (Keep all the code above the @media line exactly the same) ... */
+
+/* UPDATED MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
-  .glass-dashboard { flex-direction: column; }
-  .thermo-section { width: 100%; height: 50px; }
-  .thermometer-glass { width: 100%; height: 15px; }
-  .thermometer-glass::after { display: none; }
-  .thermometer-liquid { width: 0%; height: 100% !important; transition: width 0.5s; }
+  .glass-dashboard { 
+    flex-direction: column; /* Stack items */
+    padding: 25px 15px;
+    gap: 20px;
+  }
+
+  /* 1. Make the Thermometer container visible and tall */
+  .thermo-section { 
+    width: 100%; 
+    height: 150px; /* Fixed height for mobile */
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center; /* Center it */
+  }
+
+  /* 2. Keep the glass tube vertical */
+  .thermometer-glass { 
+    width: 18px; 
+    height: 100%; /* Fill the 150px height */
+    /* bulb stays visible */
+  }
+
+  /* 3. Ensure the bulb stays at the bottom */
+  .thermometer-glass::after { 
+    display: block; /* Force it to show */
+    width: 28px;
+    height: 28px;
+    bottom: -8px;
+  }
+
+  /* 4. Ensure the liquid fills vertically */
+  .thermometer-liquid { 
+    width: 100%; 
+    /* The height is controlled by JS, so we don't touch it here */
+  }
+  
+  /* Adjust font sizes for small screens */
+  .main-title { font-size: 2.2rem; }
+  .input-box input { font-size: 1.2rem; }
 }
