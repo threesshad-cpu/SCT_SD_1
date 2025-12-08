@@ -1,18 +1,27 @@
-/* src/TemperatureConverter.css - UPDATED */
+/* src/TemperatureConverter.css */
 
-/* FORCE FULL SCREEN RESET */
-:root { --glass: rgba(255, 255, 255, 0.15); --border: rgba(255, 255, 255, 0.2); }
+/* 1. GLOBAL RESET & VARIABLES */
+:root { 
+  --glass: rgba(255, 255, 255, 0.15); 
+  --border: rgba(255, 255, 255, 0.2); 
+}
 
+/* Forces the app to cover the entire screen, fixing the white bar issue */
 .main-wrapper {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  display: flex; align-items: center; justify-content: center;
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
   transition: background 0.8s ease;
   font-family: 'Segoe UI', sans-serif;
   overflow: hidden;
 }
 
-/* DYNAMIC THEMES */
+/* 2. DYNAMIC PHYSICS THEMES */
 .neutral { background: linear-gradient(135deg, #1e3c72, #2a5298); }
 .cold { background: linear-gradient(135deg, #83a4d4, #b6fbff); }
 .cool { background: linear-gradient(135deg, #56ab2f, #a8e063); }
@@ -22,7 +31,7 @@
 .solar { background: radial-gradient(circle, #ff0000, #ffae00); }
 .error { background: #000; border: 5px solid red; }
 
-/* DASHBOARD LAYOUT */
+/* 3. GLASS DASHBOARD CONTAINER */
 .glass-dashboard {
   background: var(--glass);
   backdrop-filter: blur(16px);
@@ -37,14 +46,17 @@
   width: 90%;
 }
 
-/* LEFT SIDE: THERMOMETER */
+/* 4. LEFT SIDE: ANIMATED THERMOMETER */
 .thermo-container {
-  display: flex; align-items: center; justify-content: center;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
   width: 80px;
 }
 
 .thermometer-glass {
-  width: 20px; height: 300px;
+  width: 20px; 
+  height: 300px;
   background: rgba(255,255,255,0.3);
   border-radius: 20px;
   position: relative;
@@ -53,31 +65,56 @@
 }
 
 .thermometer-glass::after {
-  content: ''; position: absolute; bottom: -10px; left: 50%;
-  transform: translateX(-50%); width: 34px; height: 34px;
-  background: #fff; border-radius: 50%;
+  content: ''; 
+  position: absolute; 
+  bottom: -10px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  width: 34px; 
+  height: 34px;
+  background: #fff; 
+  border-radius: 50%;
 }
 
 .thermometer-liquid {
   width: 100%;
   background: #fff;
-  position: absolute; bottom: 0; left: 0;
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
   transition: height 0.5s ease-out;
   box-shadow: 0 0 10px white;
 }
 
-/* RIGHT SIDE: CONTROLS */
-.controls-container { flex: 1; text-align: left; color: white; }
+/* 5. RIGHT SIDE: CONTROLS & INPUTS */
+.controls-container { 
+  flex: 1; 
+  text-align: left; 
+  color: white; 
+}
 
-.logo { font-size: 2.5rem; margin: 0; letter-spacing: -1px; }
+.logo { 
+  font-size: 2.5rem; 
+  margin: 0; 
+  letter-spacing: -1px; 
+}
+
 .bold { color: rgba(255,255,255,0.6); }
-.id-badge { font-size: 0.8rem; opacity: 0.7; margin-bottom: 20px; font-family: monospace; }
+
+.id-badge { 
+  font-size: 0.8rem; 
+  opacity: 0.7; 
+  margin-bottom: 20px; 
+  font-family: monospace; 
+}
 
 .fact-box {
   background: rgba(0,0,0,0.2);
   padding: 15px;
   border-radius: 12px;
-  display: flex; align-items: center; gap: 15px;
+  display: flex; 
+  align-items: center; 
+  gap: 15px;
   margin-bottom: 30px;
   border-left: 4px solid white;
 }
@@ -87,14 +124,10 @@
 
 .inputs-grid { display: grid; gap: 15px; }
 
-/* src/TemperatureConverter.css */
-
-/* ... (keep your top sections the same) ... */
-
-/* UPDATED INPUT CARD DESIGN */
+/* 6. HIGH VISIBILITY INPUT CARDS */
 .input-card {
   position: relative;
-  /* Darker background makes it look like an empty slot */
+  /* Darker background makes it look like a slot */
   background: rgba(0, 0, 0, 0.25); 
   padding: 15px 25px;
   border-radius: 12px;
@@ -103,24 +136,22 @@
   justify-content: space-between;
   transition: all 0.2s;
   
-  /* Permanent border so user knows it's a box */
+  /* Permanent border so the user knows it's clickable */
   border: 1px solid rgba(255, 255, 255, 0.3); 
-  
-  /* Change mouse cursor so they know it's clickable */
-  cursor: text; 
+  cursor: text;
 }
 
-/* HOVER EFFECT */
+/* Hover Effect */
 .input-card:hover { 
   background: rgba(0, 0, 0, 0.35); 
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* CLICK/FOCUS EFFECT (Bright Glow) */
+/* Focus/Active Glow Effect */
 .input-card:focus-within {
   background: rgba(0, 0, 0, 0.4);
   border-color: #fff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Stronger Glow */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Strong Glow */
   transform: scale(1.02);
 }
 
@@ -138,25 +169,52 @@
   background: transparent; 
   border: none; 
   color: white;
-  font-size: 1.8rem; /* Even larger text */
+  font-size: 1.8rem; 
   text-align: right; 
   width: 100%; 
   outline: none;
   font-weight: bold;
-  font-family: 'Segoe UI', monospace; /* Monospace makes numbers look techy */
+  font-family: 'Segoe UI', monospace; /* Techy numbers */
 }
 
-/* ... (keep the rest of the file) ... */
-/* REMOVE SPINNERS FROM INPUTS */
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.input-card input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
 
-.unit-tag { font-size: 1rem; opacity: 0.8; margin-left: 10px; width: 25px; }
+/* Remove small up/down arrows from number inputs */
+input::-webkit-outer-spin-button, 
+input::-webkit-inner-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
-/* MOBILE RESPONSIVE */
+.unit-tag { 
+  font-size: 1rem; 
+  opacity: 0.8; 
+  margin-left: 10px; 
+  width: 25px; 
+}
+
+/* 7. MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
-  .glass-dashboard { flex-direction: column; padding: 20px; }
-  .thermo-container { width: 100%; height: 50px; }
-  .thermometer-glass { width: 100%; height: 15px; }
-  .thermometer-glass::after { display: none; }
-  .thermometer-liquid { width: 0%; height: 100% !important; transition: width 0.5s; }
+  .glass-dashboard { 
+    flex-direction: column; 
+    padding: 20px; 
+  }
+  .thermo-container { 
+    width: 100%; 
+    height: 50px; 
+  }
+  .thermometer-glass { 
+    width: 100%; 
+    height: 15px; 
+  }
+  .thermometer-glass::after { 
+    display: none; 
+  }
+  .thermometer-liquid { 
+    width: 0%; 
+    height: 100% !important; 
+    transition: width 0.5s; 
+  }
 }
