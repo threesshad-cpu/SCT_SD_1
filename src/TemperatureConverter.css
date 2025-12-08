@@ -6,7 +6,7 @@
   display: flex; align-items: center; justify-content: center;
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
-  transition: background 0.5s ease-out; /* Smooth transition between colors */
+  transition: background 0.5s ease-out;
 }
 
 /* PARTICLES */
@@ -41,7 +41,7 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* LEFT SIDE: THERMOMETER */
+/* LEFT SIDE: THERMOMETER (Desktop Vertical) */
 .thermo-section {
   display: flex; align-items: center; justify-content: center;
   width: 60px;
@@ -50,9 +50,12 @@
   width: 20px; height: 350px;
   background: rgba(255,255,255,0.2);
   border-radius: 20px; border: 2px solid rgba(255,255,255,0.4);
-  position: relative; overflow: hidden;
+  position: relative; 
+  /* Fix for Safari overflow */
+  z-index: 5;
 }
 .thermometer-glass::after {
+  /* The Bulb */
   content: ''; position: absolute; bottom: -10px; left: 50%;
   transform: translateX(-50%); width: 34px; height: 34px;
   background: #fff; border-radius: 50%;
@@ -60,8 +63,10 @@
 .thermometer-liquid {
   width: 100%; background: #fff;
   position: absolute; bottom: 0; left: 0;
-  transition: height 0.5s ease-out;
+  height: var(--fill); /* Desktop uses Height */
+  transition: height 0.5s ease-out, width 0.5s ease-out;
   box-shadow: 0 0 15px white;
+  border-radius: 0 0 10px 10px;
 }
 
 /* RIGHT SIDE: CONTENT */
@@ -114,49 +119,47 @@
 
 .id-tag { margin-top: 20px; font-size: 0.75rem; opacity: 0.4; text-align: center; }
 
-/* src/TemperatureConverter.css - Mobile Fix */
-
-/* ... (Keep all the code above the @media line exactly the same) ... */
-
-/* UPDATED MOBILE RESPONSIVENESS */
+/* 📱 MOBILE HORIZONTAL LAYOUT */
 @media (max-width: 600px) {
   .glass-dashboard { 
-    flex-direction: column; /* Stack items */
+    flex-direction: column; 
     padding: 25px 15px;
     gap: 20px;
   }
 
-  /* 1. Make the Thermometer container visible and tall */
+  /* 1. Horizontal Container */
   .thermo-section { 
     width: 100%; 
-    height: 150px; /* Fixed height for mobile */
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center; /* Center it */
+    height: 40px; /* Short height */
+    margin-bottom: 5px;
+    padding-left: 20px; /* Space for the bulb on left */
   }
 
-  /* 2. Keep the glass tube vertical */
+  /* 2. Horizontal Glass Tube */
   .thermometer-glass { 
-    width: 18px; 
-    height: 100%; /* Fill the 150px height */
-    /* bulb stays visible */
-  }
-
-  /* 3. Ensure the bulb stays at the bottom */
-  .thermometer-glass::after { 
-    display: block; /* Force it to show */
-    width: 28px;
-    height: 28px;
-    bottom: -8px;
-  }
-
-  /* 4. Ensure the liquid fills vertically */
-  .thermometer-liquid { 
     width: 100%; 
-    /* The height is controlled by JS, so we don't touch it here */
+    height: 12px; 
+    border-radius: 10px;
+    overflow: visible; /* Allow bulb to stick out */
+  }
+
+  /* 3. The Bulb (Moves to Left) */
+  .thermometer-glass::after { 
+    width: 24px; height: 24px;
+    left: -10px; /* Stick out left */
+    top: 50%; 
+    transform: translateY(-50%); /* Center vertically */
+    bottom: auto; /* Remove desktop style */
+  }
+
+  /* 4. The Liquid (Fills Sideways) */
+  .thermometer-liquid { 
+    width: var(--fill); /* Uses Width now! */
+    height: 100%; 
+    left: 0; top: 0;
+    border-radius: 10px 0 0 10px;
   }
   
-  /* Adjust font sizes for small screens */
   .main-title { font-size: 2.2rem; }
   .input-box input { font-size: 1.2rem; }
 }

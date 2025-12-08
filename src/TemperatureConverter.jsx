@@ -10,60 +10,38 @@ const TemperatureConverter = () => {
   const [particleSpeed, setParticleSpeed] = useState(20);
   const [thermoHeight, setThermoHeight] = useState(0);
   const [copied, setCopied] = useState(null);
-  
-  // NEW: Dynamic Background State
   const [bgColor, setBgColor] = useState('linear-gradient(135deg, #232526, #414345)');
 
   // 🎨 INFINITE COLOR LOGIC
   const getDynamicBackground = (c) => {
     const val = parseFloat(c);
-    
-    // Default / Neutral (Dark Grey) if empty
     if (isNaN(val)) return 'linear-gradient(135deg, #232526, #414345)';
 
-    // Baseline: 20°C is "Neutral"
-    let hue = 0; // Red by default
-    let lightness = 50; // Standard brightness
+    let hue = 0; 
+    let lightness = 50; 
     let saturation = 80; 
+    const diff = val - 20; 
 
-    const diff = val - 20; // How far from neutral?
-
-    if (diff === 0) {
-       // Exact Room Temp: Neutral Grey/White
-       return 'linear-gradient(135deg, #bdc3c7, #2c3e50)';
-    }
-    else if (diff < 0) {
-       // COLDER (Blue Spectrum)
-       // Hue 220 is Blue. 
-       // As it gets colder (diff gets more negative), we darken the lightness.
-       // Lightness starts at 90 (White-ish) and drops to 10 (Black-ish)
-       hue = 220;
+    if (diff === 0) return 'linear-gradient(135deg, #bdc3c7, #2c3e50)';
+    
+    if (diff < 0) {
+       hue = 220; // Blue
        lightness = Math.max(10, 90 - (Math.abs(diff) * 1.2)); 
-    } 
-    else {
-       // HOTTER (Red Spectrum)
-       // Hue 0 is Red.
-       // As it gets hotter, lightness drops from 90 to 10.
-       hue = 0;
+    } else {
+       hue = 0; // Red
        lightness = Math.max(10, 90 - (Math.abs(diff) * 1.2));
     }
-
-    // Create a smooth gradient using the calculated HSL values
     return `linear-gradient(135deg, hsl(${hue}, ${saturation}%, ${lightness}%), hsl(${hue}, ${saturation}%, ${Math.max(0, lightness - 20)}%))`;
   };
 
   const updateSystem = (c) => {
     const val = parseFloat(c);
-    
-    // Update Background Instantly
     setBgColor(getDynamicBackground(val));
 
-    // Thermometer Physics
     let height = ((val + 50) / 170) * 100;
     if (height < 5) height = 5; if (height > 100) height = 100;
     setThermoHeight(height);
 
-    // Particle Speed
     let speed = 20 - ((val + 100) / 50); 
     if (speed < 0.5) speed = 0.5; if (speed > 40) speed = 40;
     setParticleSpeed(isNaN(val) ? 20 : speed);
@@ -74,7 +52,6 @@ const TemperatureConverter = () => {
       return;
     }
 
-    // Benchmarks
     if (val <= -273.15) setBenchmark('🌌 Absolute Zero: Atoms stop moving.');
     else if (val < -100) setBenchmark('🥶 Cold enough to freeze alcohol.');
     else if (val <= 0) setBenchmark('🧊 Freezing point of water.');
@@ -130,9 +107,7 @@ const TemperatureConverter = () => {
   };
 
   return (
-    // Apply dynamic background style directly here
     <div className="universe-container" style={{ background: bgColor }}>
-      
       <div className="particles" style={{ '--speed': `${particleSpeed}s` }}>
         <span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span>
@@ -141,7 +116,8 @@ const TemperatureConverter = () => {
       <div className="glass-dashboard">
         <div className="thermo-section">
            <div className="thermometer-glass">
-              <div className="thermometer-liquid" style={{ height: `${thermoHeight}%` }}></div>
+              {/* NOTE: We now use CSS Variable --fill instead of height directly */}
+              <div className="thermometer-liquid" style={{ '--fill': `${thermoHeight}%` }}></div>
            </div>
         </div>
 
