@@ -87,44 +87,66 @@
 
 .inputs-grid { display: grid; gap: 15px; }
 
-/* INPUT CARD - THE FIXED PART */
+/* src/TemperatureConverter.css */
+
+/* ... (keep your top sections the same) ... */
+
+/* UPDATED INPUT CARD DESIGN */
 .input-card {
   position: relative;
-  background: rgba(255,255,255,0.1);
-  padding: 15px 25px; /* Bigger padding */
+  /* Darker background makes it look like an empty slot */
+  background: rgba(0, 0, 0, 0.25); 
+  padding: 15px 25px;
   border-radius: 12px;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
   transition: all 0.2s;
-  border: 2px solid transparent; /* Prepare for border change */
+  
+  /* Permanent border so user knows it's a box */
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  
+  /* Change mouse cursor so they know it's clickable */
+  cursor: text; 
 }
 
 /* HOVER EFFECT */
 .input-card:hover { 
-  background: rgba(255,255,255,0.2); 
-  transform: translateX(5px); 
+  background: rgba(0, 0, 0, 0.35); 
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* FOCUS EFFECT (The Glow) */
+/* CLICK/FOCUS EFFECT (Bright Glow) */
 .input-card:focus-within {
-  background: rgba(255,255,255,0.25);
-  border-color: rgba(255,255,255,0.8); /* Bright white border */
-  box-shadow: 0 0 15px rgba(255,255,255,0.3); /* Glow */
+  background: rgba(0, 0, 0, 0.4);
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Stronger Glow */
   transform: scale(1.02);
 }
 
-.input-card label { width: 100px; font-weight: 600; opacity: 0.9; }
+.input-card label { 
+  width: 100px; 
+  font-weight: 600; 
+  opacity: 0.9;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
 
 .input-card input {
-  background: transparent; border: none; color: white;
-  font-size: 1.5rem; /* Bigger Text */
-  text-align: right; width: 100%; outline: none;
+  background: transparent; 
+  border: none; 
+  color: white;
+  font-size: 1.8rem; /* Even larger text */
+  text-align: right; 
+  width: 100%; 
+  outline: none;
   font-weight: bold;
+  font-family: 'Segoe UI', monospace; /* Monospace makes numbers look techy */
 }
 
-.input-card input::placeholder {
-  color: rgba(255, 255, 255, 0.5); /* Lighter placeholder */
-}
-
+/* ... (keep the rest of the file) ... */
 /* REMOVE SPINNERS FROM INPUTS */
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
