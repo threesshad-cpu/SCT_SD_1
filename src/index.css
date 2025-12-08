@@ -1,0 +1,25 @@
+/* src/index.css */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  /* This ensures the body takes up the full width */
+  width: 100%; 
+  overflow-x: hidden; /* Prevents horizontal scrollbar */
+}
+
+#root {
+  /* Vite defaults restrict this to 1280px. We need to un-restrict it. */
+  max-width: none; 
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
