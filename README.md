@@ -76,29 +76,32 @@ This project strictly adheres to modern frontend best practices.
 ## 🚀 Installation & Setup
 
 Follow these steps to explore the scientific dashboard locally.
-```bash
 1. Clone the Repository
+```bash
 git clone [https://github.com/threesshad-cpu/SCT_SD_1.git](https://github.com/threesshad-cpu/SCT_SD_1.git)
 cd SCT_SD_1
+```
 2. Install Dependencies
 
-Bash
+```Bash
 
 npm install
+```
 3. Launch the Application
 
-Bash
+```Bash
 
 npm run dev
-The application will be available at http://localhost:5173.(and deploy it in vercel or any other platform)
+```
+The application will be available at http://localhost:5173 (and deploy it in vercel or any other platform)
 
-🔗 Live Deployment
+## **🔗 Live Deployment**
 The dashboard is deployed live on Vercel:
 
-👉 https://sct-sd-1-k8ds.vercel.app/ (<-checkout)
+👉 https://sct-sd-1-k8ds.vercel.app/(<-checkout)
 
-🤝 Credits
-->Developer: Threessha D
-->Role: Software Development Intern
-->Organization: SkillCraft Technology
-->Project ID: SCT/DEC25/0792
+## 🤝 Credits
+* **Developer:** Threessha D
+* **Role:** Software Development Intern
+* **Organization:** SkillCraft Technology
+* **Project ID:** SCT/DEC25/0792
