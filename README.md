@@ -95,13 +95,10 @@ npm run dev
 ```
 The application will be available at http://localhost:5173 (and deploy it in vercel or any other platform)
 
-## **🔗 Live Deployment**
-The dashboard is deployed live on Vercel:
-
-👉 https://sct-sd-1-k8ds.vercel.app/(<-checkout)
+## Deployment Link : https://sct-sd-1-k8ds.vercel.app/ (<-checkout)
 
 ## 🤝 Credits
 * **Developer:** Threessha D
 * **Role:** Software Development Intern
 * **Organization:** SkillCraft Technology
-* **Project ID:** SCT/DEC25/0792
+* **Project ID:** SCT_SD_1
